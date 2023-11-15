@@ -10,8 +10,7 @@ import umc.study.domain.mapping.MemberMission;
 import umc.study.repository.MemberRepository;
 import umc.study.repository.MissionRepository;
 import umc.study.service.MemberMissionService;
-
-import java.io.IOException;
+import umc.study.validation.annotation.ExistMissionChallenge;
 
 @RestController
 @RequestMapping("/member-mission")
@@ -28,7 +27,7 @@ public class MemberMissionController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addMemberMission(@RequestParam Long memberId, @RequestParam Long missionId) {
+    public ResponseEntity<String> addMemberMission(@RequestParam Long memberId, @RequestParam @ExistMissionChallenge Long missionId) {
             Member member = memberRepository.findById(memberId)
                     .orElseThrow(() -> new IllegalArgumentException("Invalid member id"));
             Mission mission = missionRepository.findById(missionId)
@@ -36,6 +35,6 @@ public class MemberMissionController {
 
             memberMissionService.addMemberMission(member, mission);
 
-            return ResponseEntity.ok("Member mission added successfully");
+            return ResponseEntity.ok("미션 도전하기!");
     }
 }

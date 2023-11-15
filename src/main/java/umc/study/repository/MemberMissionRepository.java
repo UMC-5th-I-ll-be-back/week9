@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
+import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.MemberMission;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
     List<MemberMission> findByMember(Member member);
 
     List<MemberMission> findByMission(Mission mission);
+
+    List<MemberMission> findByMissionIdAndStatus(Long missionId, MissionStatus status);
 }
