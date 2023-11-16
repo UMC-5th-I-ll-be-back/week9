@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import umc.study.domain.Review;
-import umc.study.service.ReviewService.ReviewService;
+import umc.study.service.StoreService.ReviewService;
 import umc.study.web.dto.review.ReviewRequestDto;
 
 @RestController
