@@ -2,6 +2,8 @@ package umc.study.domain;
 
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
+import umc.study.web.dto.review.ReviewRequestDto;
+import umc.study.web.dto.store.StoreRequestDto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,4 +32,15 @@ public class Store extends BaseEntity {
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Mission> missionList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
+
+    public static Store toEntity(StoreRequestDto requestDto){
+        return Store.builder()
+                .name(requestDto.getName())
+                .address(requestDto.getAddress())
+                .score(requestDto.getScore())
+                .build();
+    }
 }
