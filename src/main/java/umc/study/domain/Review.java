@@ -2,6 +2,7 @@ package umc.study.domain;
 
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
+import umc.study.web.dto.review.ReviewRequestDto;
 
 import javax.persistence.*;
 import java.util.List;
@@ -31,4 +32,19 @@ public class Review extends BaseEntity {
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> reviewImageList;
+
+    public static Review toEntity(ReviewRequestDto requestDto){
+        return Review.builder()
+                .title(requestDto.getTitle())
+                .score(requestDto.getScore())
+                .reviewImageList(requestDto.getReviewImageList())
+                .build();
+    }
+
+    public void setStore(Store store){
+        if(this.store != null)
+            store.getReviewList().remove(this);
+        this.store = store;
+        store.getReviewList().add(this);
+    }
 }
