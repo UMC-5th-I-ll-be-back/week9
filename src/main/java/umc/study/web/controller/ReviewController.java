@@ -4,13 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import umc.study.domain.Review;
 import umc.study.service.StoreService.ReviewService;
 import umc.study.web.dto.review.ReviewRequestDto;
+
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,5 +23,11 @@ public class ReviewController {
         Review savedReview = reviewService.addReview(reviewRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(savedReview);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<Review>> getReviewList() {
+        List<Review> reviewList = reviewService.getReviewList();
+        return new ResponseEntity<>(reviewList,HttpStatus.FOUND);
     }
 }
