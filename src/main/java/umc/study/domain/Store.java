@@ -20,10 +20,13 @@ public class Store extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "address")
     private String address;
 
+    @Column(name = "score")
     private Float score;
 
     @ManyToOne(fetch = FetchType.LAZY)
