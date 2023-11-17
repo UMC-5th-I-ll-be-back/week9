@@ -7,19 +7,23 @@ import umc.study.domain.Store;
 import umc.study.repository.ReviewRepository;
 import umc.study.repository.StoreRepository;
 import umc.study.web.dto.review.ReviewRequestDto;
-import umc.study.web.dto.store.StoreRequestDto;
+
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class ReviewService {
-    private ReviewRepository reviewRepository;
-    private StoreRepository storeRepository;
+    private final ReviewRepository reviewRepository;
+    private final StoreRepository storeRepository;
 
     public Review addReview(ReviewRequestDto requestDto){
-
-        Review review = Review.toEntity(requestDto);
-        review.setStore(storeRepository.findByName(requestDto.getStoreName()));
-
+        Store store = storeRepository.findByName(requestDto.getStoreName());
+        Review review = Review.toEntity(store, requestDto);
         return reviewRepository.save(review);
+    }
+
+    public List<Review> getReviewList(){
+        return reviewRepository.findAll();
     }
 }
