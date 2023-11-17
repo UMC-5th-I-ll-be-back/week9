@@ -1,4 +1,4 @@
-package umc.study.service;
+package umc.study.service.MemberMissionService;
 
 import org.springframework.stereotype.Service;
 import umc.study.domain.Member;

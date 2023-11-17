@@ -5,11 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.study.domain.Member;
 import umc.study.domain.Mission;
-import umc.study.domain.enums.MissionStatus;
-import umc.study.domain.mapping.MemberMission;
 import umc.study.repository.MemberRepository;
 import umc.study.repository.MissionRepository;
-import umc.study.service.MemberMissionService;
+import umc.study.service.MemberMissionService.MemberMissionService;
 import umc.study.validation.annotation.ExistMissionChallenge;
 
 @RestController

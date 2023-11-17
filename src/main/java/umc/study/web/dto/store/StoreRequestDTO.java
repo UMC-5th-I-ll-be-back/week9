@@ -1,4 +1,4 @@
-package umc.study.web.dto;
+package umc.study.web.dto.store;
 
 import lombok.Getter;
 import umc.study.validation.annotation.ExistRegion;

@@ -6,11 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.study.domain.Review;
-import umc.study.service.StoreService.ReviewService;
+import umc.study.service.ReviewService.ReviewService;
 import umc.study.web.dto.review.ReviewRequestDto;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
