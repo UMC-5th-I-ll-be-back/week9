@@ -1,5 +1,6 @@
 package umc.study.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 import umc.study.web.dto.review.ReviewRequestDto;
@@ -28,23 +29,19 @@ public class Review extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
+    @JsonIgnore
     private Store store;
 
     @OneToMany(mappedBy = "review", cascade = CascadeType.ALL)
     private List<ReviewImage> reviewImageList;
 
-    public static Review toEntity(ReviewRequestDto requestDto){
+    public static Review toEntity(Store store, ReviewRequestDto requestDto){
         return Review.builder()
                 .title(requestDto.getTitle())
                 .score(requestDto.getScore())
                 .reviewImageList(requestDto.getReviewImageList())
+                .store(store)
                 .build();
     }
 
-    public void setStore(Store store){
-        if(this.store != null)
-            store.getReviewList().remove(this);
-        this.store = store;
-        store.getReviewList().add(this);
-    }
 }
