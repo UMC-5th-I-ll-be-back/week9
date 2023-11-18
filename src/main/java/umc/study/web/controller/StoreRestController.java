@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.StoreConverter;
+import umc.study.domain.Mission;
 import umc.study.domain.Store;
 import umc.study.service.StoreService.StoreCommandService;
 import umc.study.service.StoreService.StoreQueryService;
+import umc.study.validation.annotation.ExistStore;
 import umc.study.web.dto.store.StoreRequestDTO;
 import umc.study.web.dto.store.StoreResponseDTO;
 
@@ -37,5 +39,11 @@ public class StoreRestController {
     @GetMapping("/{store_id}")
     public ResponseEntity<?> getStoreReviewList(@PathVariable Long store_id){
         return new ResponseEntity<>(storeQueryService.getStoreReviewList(store_id), HttpStatus.FOUND);
+    }
+
+    @PostMapping("/{storeId}/mission")
+    public ApiResponse<StoreResponseDTO.CreateMissionResultDTO> createmission(@RequestBody @Valid StoreRequestDTO.MissionDTO request, @ExistStore @PathVariable(name = "storeId") Long storeId){
+        Mission mission = storeCommandService.createmission(storeId, request);
+        return ApiResponse.onSuccess(StoreConverter.toCreateMissionResultDto(mission));
     }
 }

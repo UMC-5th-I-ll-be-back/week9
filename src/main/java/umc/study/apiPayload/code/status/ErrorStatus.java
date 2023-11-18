@@ -9,7 +9,6 @@ import umc.study.apiPayload.code.ErrorReasonDTO;
 @Getter
 @AllArgsConstructor
 public enum ErrorStatus implements BaseErrorCode {
-
     // 가장 일반적인 응답
     _INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500", "서버 에러, 관리자에게 문의 바랍니다."),
     _BAD_REQUEST(HttpStatus.BAD_REQUEST,"COMMON400","잘못된 요청입니다."),
@@ -29,9 +28,14 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // FoodCategory Error
     FOOD_CATEGORY_NOT_FOUND(HttpStatus.NOT_FOUND, "FOOD_CATEGORY4001", "음식 카테고리가 없습니다."),
-
     // Region Error
-    REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION4001", "지역을 찾을 수 없습니다");
+    REGION_NOT_FOUND(HttpStatus.NOT_FOUND, "REGION4001", "지역을 찾을 수 없습니다"),
+
+    // Store Error
+    STORE_NOT_FOUND(HttpStatus.NOT_FOUND, "STORE_4001","가게가 없습니다.");
+
+
+
 
     private final HttpStatus httpStatus;
     private final String code;
