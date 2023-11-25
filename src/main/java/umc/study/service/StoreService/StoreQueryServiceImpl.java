@@ -27,4 +27,8 @@ public class StoreQueryServiceImpl implements StoreQueryService{
         List<Review> reviewList = store.get().getReviewList();
         return reviewList;
     }
+    @Override
+    public Optional<Store> findStore(Long id) {
+        return storeRepository.findById(id);
+    }
 }

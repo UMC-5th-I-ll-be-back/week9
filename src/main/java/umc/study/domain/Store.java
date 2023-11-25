@@ -3,7 +3,8 @@ package umc.study.domain;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 import umc.study.web.dto.review.ReviewRequestDto;
-import umc.study.web.dto.store.StoreRequestDto;
+import umc.study.web.dto.store.StoreRequestDTO;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class Store extends BaseEntity {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Review> reviewList = new ArrayList<>();
 
-    public static Store toEntity(StoreRequestDto requestDto){
+    public static Store toEntity(StoreRequestDTO.RegionStoreDTO requestDto){
         return Store.builder()
                 .name(requestDto.getName())
                 .address(requestDto.getAddress())
